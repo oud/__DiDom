@@ -27,7 +27,7 @@
             <form name="form" role="form" (ngSubmit)="register()" #registerForm="ngForm">
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="global.form.profile">Profile</label>
-                    <select class="form-control" name="authority" [(ngModel)]="registerAccount.authorities">
+                    <select class="form-control" multiple name="authority" [(ngModel)]="registerAccount.authorities">
                         <option *ngFor="let authority of authorities" [value]="authority">{{authority}}</option>
                     </select>
                 </div>
