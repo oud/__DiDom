@@ -1,6 +1,8 @@
 package com.didom.myapp.service;
 
 import com.didom.myapp.domain.Authority;
+import com.didom.myapp.domain.Client;
+import com.didom.myapp.domain.Freelancer;
 import com.didom.myapp.domain.User;
 import com.didom.myapp.repository.AuthorityRepository;
 import com.didom.myapp.repository.PersistentTokenRepository;
@@ -40,16 +42,22 @@ public class UserService {
 
     private final SocialService socialService;
 
+    private final ClientService clientService;
+
+    private final FreelancerService freelancerService;
+
     private final UserSearchRepository userSearchRepository;
 
     private final PersistentTokenRepository persistentTokenRepository;
 
     private final AuthorityRepository authorityRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, UserSearchRepository userSearchRepository, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, ClientService clientService, FreelancerService freelancerService, UserSearchRepository userSearchRepository, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.socialService = socialService;
+        this.clientService = clientService;
+        this.freelancerService = freelancerService;
         this.userSearchRepository = userSearchRepository;
         this.persistentTokenRepository = persistentTokenRepository;
         this.authorityRepository = authorityRepository;
@@ -95,7 +103,7 @@ public class UserService {
     }
 
     public User createUser(String login, String password, String firstName, String lastName, String email,
-        String imageUrl, String langKey) {
+        String imageUrl, String langKey, Set<String> reg_authorities) {
 
         User newUser = new User();
         Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
@@ -114,10 +122,32 @@ public class UserService {
         // new user gets registration key
         newUser.setActivationKey(RandomUtil.generateActivationKey());
         authorities.add(authority);
+
+        if (reg_authorities != null) {
+            reg_authorities.forEach(
+                reg_authority -> {
+                    authorities.add(authorityRepository.findOne(reg_authority));
+                }
+            );
+        }
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         userSearchRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
+
+        if (authorities.contains(authorityRepository.findOne(AuthoritiesConstants.HIRE))){
+            Client client = new Client();
+            client.setUser(newUser);
+            clientService.save(client);
+            log.debug("Created Information for Client: {}", client);
+        }
+
+        if (authorities.contains(authorityRepository.findOne(AuthoritiesConstants.SEEKER))){
+            Freelancer freelancer = new Freelancer();
+            freelancer.setUser(newUser);
+            freelancerService.save(freelancer);
+            log.debug("Created Information for Freelancer: {}", freelancer);
+        }
         return newUser;
     }
 

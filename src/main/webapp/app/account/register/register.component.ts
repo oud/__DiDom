@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     registerAccount: any;
     success: boolean;
     modalRef: NgbModalRef;
+    authorities: any[];
 
     constructor(
         private languageService: JhiLanguageService,
@@ -33,6 +34,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         this.success = false;
         this.registerAccount = {};
+        this.authorities = ['ROLE_HIRE', 'ROLE_SEEKER'];
     }
 
     ngAfterViewInit() {
