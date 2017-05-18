@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "job",
+            "otherEntityName": "job",
+            "otherEntityRelationshipName": "paymentType"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contract",
+            "otherEntityName": "contract",
+            "otherEntityRelationshipName": "paymentType"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "proposal",
+            "otherEntityName": "proposal",
+            "otherEntityRelationshipName": "paymentType"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "typeName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170518121330",
+    "entityTableName": "payment_type",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

@@ -1,0 +1,57 @@
+
+<div *ngIf="contract">
+    <h2><span jhiTranslate="diDomApp.contract.detail.title">Contract</span> {{contract.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="diDomApp.contract.startTime">Start Time</span></dt>
+        <dd>
+            <span>{{contract.startTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="diDomApp.contract.endTime">End Time</span></dt>
+        <dd>
+            <span>{{contract.endTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="diDomApp.contract.paymentAmount">Payment Amount</span></dt>
+        <dd>
+            <span>{{contract.paymentAmount}}</span>
+        </dd>
+        <dt><span jhiTranslate="diDomApp.contract.client">Client</span></dt>
+        <dd>
+            <div *ngIf="contract.client">
+                <a [routerLink]="['/client', contract.client?.id]">{{contract.client?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="diDomApp.contract.freelancer">Freelancer</span></dt>
+        <dd>
+            <div *ngIf="contract.freelancer">
+                <a [routerLink]="['/freelancer', contract.freelancer?.id]">{{contract.freelancer?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="diDomApp.contract.proposal">Proposal</span></dt>
+        <dd>
+            <div *ngIf="contract.proposal">
+                <a [routerLink]="['/proposal', contract.proposal?.id]">{{contract.proposal?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="diDomApp.contract.paymentType">Payment Type</span></dt>
+        <dd>
+            <div *ngIf="contract.paymentType">
+                <a [routerLink]="['/payment-type', contract.paymentType?.id]">{{contract.paymentType?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'contract/'+ contract.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

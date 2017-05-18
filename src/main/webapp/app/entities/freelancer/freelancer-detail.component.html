@@ -1,0 +1,41 @@
+
+<div *ngIf="freelancer">
+    <h2><span jhiTranslate="diDomApp.freelancer.detail.title">Freelancer</span> {{freelancer.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="diDomApp.freelancer.overiew">Overiew</span></dt>
+        <dd>
+            <span>{{freelancer.overiew}}</span>
+        </dd>
+        <dt><span jhiTranslate="diDomApp.freelancer.user">User</span></dt>
+        <dd>
+            {{freelancer.user?.login}}
+        </dd>
+        <dt><span jhiTranslate="diDomApp.freelancer.address">Address</span></dt>
+        <dd>
+            <div *ngIf="freelancer.address">
+                <a [routerLink]="['/location', freelancer.address?.id]">{{freelancer.address?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="diDomApp.freelancer.skill">Skill</span></dt>
+        <dd>
+            <span *ngFor="let skill of freelancer.skills; let last = last">
+                <a [routerLink]="['/skill', skill?.id ]">{{skill.skillName}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'freelancer/'+ freelancer.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

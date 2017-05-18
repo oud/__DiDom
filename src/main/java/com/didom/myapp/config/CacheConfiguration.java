@@ -43,6 +43,36 @@ public class CacheConfiguration {
             cm.createCache(com.didom.myapp.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(com.didom.myapp.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
             cm.createCache(com.didom.myapp.domain.SocialUserConnection.class.getName(), jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Freelancer.class.getName(), jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Freelancer.class.getName() + ".skills", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Freelancer.class.getName() + ".contracts", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Freelancer.class.getName() + ".proposals", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Freelancer.class.getName() + ".messages", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Client.class.getName(), jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Client.class.getName() + ".jobs", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Client.class.getName() + ".contracts", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Client.class.getName() + ".messages", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.PaymentType.class.getName(), jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.PaymentType.class.getName() + ".jobs", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.PaymentType.class.getName() + ".contracts", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.PaymentType.class.getName() + ".proposals", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Skill.class.getName(), jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Skill.class.getName() + ".jobs", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Skill.class.getName() + ".freelancers", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Job.class.getName(), jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Job.class.getName() + ".proposals", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Location.class.getName(), jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Country.class.getName(), jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.ProposalStatusCatalog.class.getName(), jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.ProposalStatusCatalog.class.getName() + ".proposals", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.ProposalStatusCatalog.class.getName() + ".messages", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Proposal.class.getName(), jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Proposal.class.getName() + ".contracts", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Proposal.class.getName() + ".messages", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Contract.class.getName(), jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Message.class.getName(), jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Message.class.getName() + ".attachments", jcacheConfiguration);
+            cm.createCache(com.didom.myapp.domain.Attachment.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

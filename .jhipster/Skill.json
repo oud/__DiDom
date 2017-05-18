@@ -1,0 +1,33 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "job",
+            "otherEntityName": "job",
+            "otherEntityRelationshipName": "mainSkill"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "freelancer",
+            "otherEntityName": "freelancer",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "skill"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "skillName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170518121331",
+    "entityTableName": "skill",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "searchEngine": "elasticsearch"
+}

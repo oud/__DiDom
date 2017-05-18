@@ -1,0 +1,71 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "mainSkill",
+            "otherEntityName": "skill",
+            "otherEntityField": "skillName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "paymentType",
+            "otherEntityName": "paymentType",
+            "otherEntityField": "typeName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "client",
+            "otherEntityName": "client",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "proposal",
+            "otherEntityName": "proposal",
+            "otherEntityRelationshipName": "job"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "paymentAmont",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "expectedDuration",
+            "fieldType": "Duration",
+            "fieldValues": "HOUR,DAY,MONTH",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "complexity",
+            "fieldType": "Complexity",
+            "fieldValues": "EASY,INTERMEDIATE,HARD"
+        }
+    ],
+    "changelogDate": "20170518121332",
+    "entityTableName": "job",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "searchEngine": "elasticsearch"
+}

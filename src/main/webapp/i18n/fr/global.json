@@ -7,6 +7,18 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entités",
+                "freelancer": "Freelancer",
+                "client": "Client",
+                "paymentType": "Payment Type",
+                "skill": "Skill",
+                "job": "Job",
+                "location": "Location",
+                "country": "Country",
+                "proposalStatusCatalog": "Proposal Status Catalog",
+                "proposal": "Proposal",
+                "contract": "Contract",
+                "message": "Message",
+                "attachment": "Attachment",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -1,0 +1,35 @@
+
+<div *ngIf="client">
+    <h2><span jhiTranslate="diDomApp.client.detail.title">Client</span> {{client.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="diDomApp.client.overview">Overview</span></dt>
+        <dd>
+            <span>{{client.overview}}</span>
+        </dd>
+        <dt><span jhiTranslate="diDomApp.client.user">User</span></dt>
+        <dd>
+            {{client.user?.login}}
+        </dd>
+        <dt><span jhiTranslate="diDomApp.client.address">Address</span></dt>
+        <dd>
+            <div *ngIf="client.address">
+                <a [routerLink]="['/location', client.address?.id]">{{client.address?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'client/'+ client.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

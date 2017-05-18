@@ -1,0 +1,50 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "freelancer",
+            "otherEntityName": "freelancer",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "client",
+            "otherEntityName": "client",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "proposal",
+            "otherEntityName": "proposal",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "proposalStatusCatalog",
+            "otherEntityName": "proposalStatusCatalog",
+            "otherEntityField": "statusName"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "attachment",
+            "otherEntityName": "attachment",
+            "otherEntityRelationshipName": "message"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "messageTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "messageText",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170518121338",
+    "entityTableName": "message",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

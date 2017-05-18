@@ -1,0 +1,28 @@
+{
+    "diDomApp": {
+        "freelancer" : {
+            "home": {
+                "title": "Freelancers",
+                "createLabel": "Créer un nouveau Freelancer",
+                "createOrEditLabel": "Créer ou éditer un Freelancer",
+                "search": "Recherche pour Freelancer"
+            },
+            "created": "Un nouveau Freelancer a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Freelancer avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Freelancer avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Freelancer {{ id }} ?"
+            },
+            "detail": {
+                "title": "Freelancer"
+            },
+            "overiew": "Overiew",
+            "user": "User",
+            "address": "Address",
+            "skill": "Skill",
+            "contract": "Contract",
+            "proposal": "Proposal",
+            "message": "Message"
+        }
+    }
+}

@@ -1,0 +1,131 @@
+
+entity Freelancer {
+	overiew String
+}
+
+entity Client {
+	overview String
+}
+
+relationship OneToOne {
+	Freelancer{user(login)} to User    
+}
+
+relationship OneToOne {
+	Client{user(login)} to User
+}
+
+entity PaymentType {
+	typeName String required 
+}
+
+entity Skill {
+	skillName String required
+}
+
+relationship ManyToOne {
+	Job{mainSkill(skillName)} to Skill{job}
+}
+
+
+relationship ManyToMany {
+	Freelancer{skill(skillName)} to Skill{freelancer}
+}
+
+relationship ManyToOne {
+	Job{paymentType(typeName)} to PaymentType{job}
+}
+
+entity Job {
+	title String required,
+    description String required ,
+    paymentAmont BigDecimal required ,
+    expectedDuration Duration required ,
+    complexity Complexity
+}
+
+relationship OneToMany {
+	Client{job(title)} to Job{client}
+}
+
+enum Duration {
+	HOUR, DAY, MONTH
+}
+
+enum Complexity {
+	EASY, INTERMEDIATE, HARD
+}
+
+
+entity Location {
+	streetAddress String,
+	postalCode String required,
+	city String,
+	stateProvince String
+}
+
+entity Country {
+	countryName String
+}
+
+relationship ManyToOne {
+	Client{address} to Location,
+    Freelancer{address} to Location
+}
+
+relationship ManyToOne {
+	Location{country(countryName)} to Country
+}
+
+entity ProposalStatusCatalog {
+	statusName String
+}
+
+entity Proposal {
+    proposalTime ZonedDateTime required ,
+    paymentAmount BigDecimal required ,
+    clientGrade Integer,
+    clientComment String,
+    freelancerGrade Integer,
+    freelancerComment String
+}
+
+entity Contract {
+	startTime ZonedDateTime required ,
+    endTime ZonedDateTime required ,
+    paymentAmount BigDecimal required 
+}
+
+entity Message {
+	messageTime ZonedDateTime,
+    messageText String    
+}
+
+entity Attachment {
+	attachmentLink String
+}
+
+relationship ManyToOne {
+	Contract{client} to Client{contract},
+    Contract{freelancer} to Freelancer{contract},
+    Contract{proposal} to Proposal{contract},
+    Contract{paymentType} to PaymentType{contract},
+    Proposal{job} to Job{proposal},
+    Proposal{freelancer} to Freelancer{proposal},
+    Proposal{paymentType} to PaymentType{proposal},
+    Proposal{currentProposalStatus(statusName)} to ProposalStatusCatalog{proposal},
+    Message{freelancer} to Freelancer{message},
+    Message{client} to Client{message},
+    Message{proposal} to Proposal{message},
+    Message{proposalStatusCatalog(statusName)} to ProposalStatusCatalog{message},
+    Attachment{message} to Message{attachment}    
+}
+
+// Set pagination options
+paginate Client, Freelancer, Job, Proposal, Contract, Skill with infinite-scroll
+
+
+// Set service options to all except few
+service Client, Freelancer, Job, Proposal, Contract, Skill with serviceClass
+
+search Client, Freelancer, Job, Skill with elasticsearch

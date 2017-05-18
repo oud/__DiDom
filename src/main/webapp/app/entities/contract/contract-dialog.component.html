@@ -1,0 +1,103 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myContractLabel" jhiTranslate="diDomApp.contract.home.createOrEditLabel">Create or edit a Contract</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!contract.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="contract.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="diDomApp.contract.startTime" for="field_startTime">Start Time</label>
+            <div class="d-flex">
+                <input id="field_startTime" type="datetime-local" class="form-control" name="startTime" [(ngModel)]="contract.startTime"
+                required  />
+            </div>
+            <div [hidden]="!(editForm.controls.startTime?.dirty && editForm.controls.startTime?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.startTime?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.startTime?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="diDomApp.contract.endTime" for="field_endTime">End Time</label>
+            <div class="d-flex">
+                <input id="field_endTime" type="datetime-local" class="form-control" name="endTime" [(ngModel)]="contract.endTime"
+                required  />
+            </div>
+            <div [hidden]="!(editForm.controls.endTime?.dirty && editForm.controls.endTime?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.endTime?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.endTime?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="diDomApp.contract.paymentAmount" for="field_paymentAmount">Payment Amount</label>
+            <input type="number" class="form-control" name="paymentAmount" id="field_paymentAmount"
+                [(ngModel)]="contract.paymentAmount"
+            required />
+            <div [hidden]="!(editForm.controls.paymentAmount?.dirty && editForm.controls.paymentAmount?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.paymentAmount?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.paymentAmount?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="diDomApp.contract.client" for="field_client">Client</label>
+            <select class="form-control" id="field_client" name="client" [(ngModel)]="contract.client" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="clientOption.id === contract.client?.id ? contract.client : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="diDomApp.contract.freelancer" for="field_freelancer">Freelancer</label>
+            <select class="form-control" id="field_freelancer" name="freelancer" [(ngModel)]="contract.freelancer" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="freelancerOption.id === contract.freelancer?.id ? contract.freelancer : freelancerOption" *ngFor="let freelancerOption of freelancers; trackBy: trackFreelancerById">{{freelancerOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="diDomApp.contract.proposal" for="field_proposal">Proposal</label>
+            <select class="form-control" id="field_proposal" name="proposal" [(ngModel)]="contract.proposal" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="proposalOption.id === contract.proposal?.id ? contract.proposal : proposalOption" *ngFor="let proposalOption of proposals; trackBy: trackProposalById">{{proposalOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="diDomApp.contract.paymentType" for="field_paymentType">Payment Type</label>
+            <select class="form-control" id="field_paymentType" name="paymentType" [(ngModel)]="contract.paymentType" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="paymentTypeOption.id === contract.paymentType?.id ? contract.paymentType : paymentTypeOption" *ngFor="let paymentTypeOption of paymenttypes; trackBy: trackPaymentTypeById">{{paymentTypeOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

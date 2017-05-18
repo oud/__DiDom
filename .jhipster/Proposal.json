@@ -1,0 +1,78 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "job",
+            "otherEntityName": "job",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "freelancer",
+            "otherEntityName": "freelancer",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "paymentType",
+            "otherEntityName": "paymentType",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "currentProposalStatus",
+            "otherEntityName": "proposalStatusCatalog",
+            "otherEntityField": "statusName"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contract",
+            "otherEntityName": "contract",
+            "otherEntityRelationshipName": "proposal"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "message",
+            "otherEntityName": "message",
+            "otherEntityRelationshipName": "proposal"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "proposalTime",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "paymentAmount",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "clientGrade",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "clientComment",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "freelancerGrade",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "freelancerComment",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170518121336",
+    "entityTableName": "proposal",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass"
+}
